@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug Insurance Test",
+      "request": "launch",
+      "mainClass": "org.junit.platform.console.ConsoleLauncher",
+      "args": [
+        "--select-class=com.btl.tests.InsuranceCalculationTest"
+      ],
+      "console": "internalConsole"
+    }
+  ]
+}
