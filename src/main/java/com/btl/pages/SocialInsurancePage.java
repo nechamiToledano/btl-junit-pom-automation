@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.btl.utils.TopMenuEnum;
+
 public class SocialInsurancePage extends BtlBasePage {
 
     @FindBy(xpath = "//a[strong[contains(text(), 'מחשבון לחישוב דמי הביטוח')]]")

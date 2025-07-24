@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.btl.utils.TopMenuEnum;
+
 public class BtlBasePage extends BasePage {
 
     public BtlBasePage(WebDriver driver) {

@@ -1,23 +1,28 @@
 package com.btl.managers;
 
+import java.io.IOException;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class ReportManager {
     private static ExtentReports extent;
 
-    public static ExtentReports getExtentReports() {
-        if (extent == null) {
-            ExtentSparkReporter sparkReporter = new ExtentSparkReporter("test-output/ExtentReport.html");
-            sparkReporter.config().setEncoding("utf-8"); 
-            sparkReporter.config().setReportName("Automation Test Report");
-            sparkReporter.config().setDocumentTitle("Test Results");
+public static ExtentReports getExtentReports() {
+    if (extent == null) {
+        ExtentSparkReporter sparkReporter = new ExtentSparkReporter("test-output/ExtentReport.html");
+        try {
+            sparkReporter.loadXMLConfig("html-config.xml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
 
-            extent = new ExtentReports();
-            extent.attachReporter(sparkReporter);
-        }
-        return extent;
+        extent = new ExtentReports();
+        extent.attachReporter(sparkReporter);
     }
+    return extent;
+}
+
 
     public static void flushReport() {
         if (extent != null) {

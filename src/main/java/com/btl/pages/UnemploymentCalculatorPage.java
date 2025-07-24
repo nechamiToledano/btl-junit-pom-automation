@@ -2,62 +2,62 @@ package com.btl.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+public class UnemploymentCalculatorPage extends BtlBasePage {
 
-public class UnemploymentCalculatorPage {
+    @FindBy(id = "ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_DynDatePicker_PiturimDate_Date")
+    private WebElement stopWorkDateInput;
 
-    private WebDriver driver;
-    private WebDriverWait wait;
+    @FindBy(id = "ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_rdb_age_1")
+    private WebElement ageOver28Radio;
 
-    // elements
-    private By stopWorkDateInput = By.id("ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_DynDatePicker_PiturimDate_Date");
-    private By ageOver28Radio = By.id("ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_rdb_age_1");
-    private By continueButton = By.className("btnNext");
+    @FindBy(className = "btnNext")
+    private WebElement continueButton;
 
-    // results
-    private By avgDailySalary = By.id("ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_lbl_AverageDaySal");
-    private By dailyUnemploymentAmount = By.id("ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_lbl_DayBenefit");
-    private By monthlyUnemploymentAmount = By.id("ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_lbl_MonthBenefit");
+    @FindBy(id = "ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_lbl_AverageDaySal")
+    private WebElement avgDailySalary;
+
+    @FindBy(id = "ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_lbl_DayBenefit")
+    private WebElement dailyUnemploymentAmount;
+
+    @FindBy(id = "ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_lbl_MonthBenefit")
+    private WebElement monthlyUnemploymentAmount;
 
     public UnemploymentCalculatorPage(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        super(driver);
+        // PageFactory.initElements כבר אמור להיות בקונסטרקטור של BtlBasePage
     }
 
     public void enterStopWorkDate(String date) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(stopWorkDateInput)).clear();
-        driver.findElement(stopWorkDateInput).sendKeys(date);
+        wait.until(ExpectedConditions.visibilityOf(stopWorkDateInput)).clear();
+        stopWorkDateInput.sendKeys(date);
     }
 
     public void selectAgeOver28() {
         wait.until(ExpectedConditions.elementToBeClickable(ageOver28Radio)).click();
     }
 
-    public void clickContinue() throws InterruptedException {
+    public void clickContinue() {
         wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
-        Thread.sleep(3000);
     }
 
-    // fill 6 salaries inputs with loop - by dynamic id ctl02 to ctl07
     public void enterSalaryAmounts(String[] salaries) {
         for (int i = 0; i < salaries.length; i++) {
             String id = String.format(
                 "ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_IncomeGrid_ctl%02d_Txt_Sallary",
                 i + 2); 
-            By salaryInput = By.id(id);
-            if (salaries[i] != null) {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(salaryInput)).clear();
-                driver.findElement(salaryInput).sendKeys(salaries[i]);
-            }
+            WebElement salaryInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
+            salaryInput.clear();
+            salaryInput.sendKeys(salaries[i]);
         }
     }
 
     public boolean isResultsDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(avgDailySalary)).isDisplayed()
-                && driver.findElement(dailyUnemploymentAmount).isDisplayed()
-                && driver.findElement(monthlyUnemploymentAmount).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOf(avgDailySalary)).isDisplayed()
+                && wait.until(ExpectedConditions.visibilityOf(dailyUnemploymentAmount)).isDisplayed()
+                && wait.until(ExpectedConditions.visibilityOf(monthlyUnemploymentAmount)).isDisplayed();
     }
 }

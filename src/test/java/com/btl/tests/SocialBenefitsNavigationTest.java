@@ -9,24 +9,23 @@ public class SocialBenefitsNavigationTest extends BaseTest {
 
     private SocialBenefitsPage socialBenefitsPage;
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Navigate to ''{0}''' → expect title to contain ''{1}''")
     @CsvSource({
-        "אבטלה, אבטלה",
-        "שאירים, שאירים",
-        "קצבת ילדים, ילדים",
-        "סיעוד, סיעוד",
-        "ילד נכה, ילד נכה"
+            "אבטלה, אבטלה",
+            "שאירים, שאירים",
+            "קצבת ילדים, ילדים",
+            "סיעוד, סיעוד",
+            "ילד נכה, ילד נכה"
     })
     public void testNavigateToBenefitsSubPages(String subMenuText, String expectedTitlePart) {
         socialBenefitsPage = new SocialBenefitsPage(driver);
 
         socialBenefitsPage.goToBenefitsMenu();
-
         socialBenefitsPage.clickSubMenu(subMenuText);
 
         String actualTitle = driver.getTitle();
 
         Assertions.assertTrue(actualTitle.contains(expectedTitlePart),
-            "כותרת הדף לא תואמת עבור " + subMenuText + ": " + actualTitle);
+                "כותרת הדף לא תואמת עבור '" + subMenuText + "': " + actualTitle);
     }
 }

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.btl.tests.InsuranceCalculationTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.112 s - in com.btl.tests.InsuranceCalculationTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.828 s - in com.btl.tests.InsuranceCalculationTest

@@ -11,7 +11,7 @@ public class UnemploymentCalculationTest extends BaseTest {
     private UnemploymentCalculatorPage unemploymentPage;
 
     @Test
-    public void testCalculateUnemploymentBenefits() throws InterruptedException {
+    public void testCalculateUnemploymentBenefits()  {
         socialBenefitsPage = new SocialBenefitsPage(driver);
         unemploymentPage = new UnemploymentCalculatorPage(driver);
 
