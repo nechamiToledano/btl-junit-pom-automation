@@ -12,12 +12,12 @@ public class UnemploymentCalculatorPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    // אלמנטים
+    // elements
     private By stopWorkDateInput = By.id("ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_DynDatePicker_PiturimDate_Date");
     private By ageOver28Radio = By.id("ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_rdb_age_1");
     private By continueButton = By.className("btnNext");
 
-    // תוצאות
+    // results
     private By avgDailySalary = By.id("ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_lbl_AverageDaySal");
     private By dailyUnemploymentAmount = By.id("ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_lbl_DayBenefit");
     private By monthlyUnemploymentAmount = By.id("ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_lbl_MonthBenefit");
@@ -41,12 +41,12 @@ public class UnemploymentCalculatorPage {
         Thread.sleep(3000);
     }
 
-    // מילוי 6 שדות שכר עם לולאה - מזהה דינמי לפי ctl02 עד ctl07
+    // fill 6 salaries inputs with loop - by dynamic id ctl02 to ctl07
     public void enterSalaryAmounts(String[] salaries) {
         for (int i = 0; i < salaries.length; i++) {
             String id = String.format(
                 "ctl00_ctl43_g_2ccdbe03_122a_4c30_928f_60300c0df306_ctl00_AvtalaWizard_IncomeGrid_ctl%02d_Txt_Sallary",
-                i + 2); // מתחיל מ-ctl02
+                i + 2); 
             By salaryInput = By.id(id);
             if (salaries[i] != null) {
                 wait.until(ExpectedConditions.visibilityOfElementLocated(salaryInput)).clear();

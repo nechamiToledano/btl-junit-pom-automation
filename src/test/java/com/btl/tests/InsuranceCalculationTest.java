@@ -17,20 +17,21 @@ public class InsuranceCalculationTest extends BaseTest {
         socialInsurancePage = new SocialInsurancePage(driver);
         calculatorPage = new InsuranceCalculatorPage(driver);
 
-        // 1. כניסה לתפריט דמי ביטוח > דמי ביטוח לאומי
+        // 1. Navigate to "Insurance Fees" > "National Insurance Fees"
         socialInsurancePage.goToNationalInsurance();
 
-        // 2. בדיקת כותרת דף דמי ביטוח לאומי
+        // 2. Verify page title of National Insurance Fees page
         Assertions.assertTrue(socialInsurancePage.getPageTitle().contains("דמי ביטוח לאומי"),
-                "לא נמצא דף דמי ביטוח לאומי");
+                "National Insurance Fees page not found");
 
-        // 3. כניסה למחשבון
+        // 3. Enter the calculator page
         socialInsurancePage.goToCalculator();
 
-        // 4. בדיקת כותרת מחשבון
-        Assertions.assertTrue(calculatorPage.getPageTitle().contains("חישוב דמי ביטוח עבור עצמאי, תלמיד, שוהה בחוץ לארץ ומי שלא עובד"),"לא נמצא דף מחשבון");
+        // 4. Verify calculator page title
+        Assertions.assertTrue(calculatorPage.getPageTitle().contains("חישוב דמי ביטוח עבור עצמאי, תלמיד, שוהה בחוץ לארץ ומי שלא עובד"),
+                "Calculator page not found");
 
-        // 5. מילוי הטופס
+        // 5. Fill out the form
         calculatorPage.selectStudentOption();
         calculatorPage.selectGenderMale();
         LocalDate birthDate = LocalDate.of(2006, 11, 1);
@@ -39,12 +40,12 @@ public class InsuranceCalculationTest extends BaseTest {
         calculatorPage.selectDisabilityNo();
         calculatorPage.clickContinue();
 
-        // 6. בדיקת שלב סיום
-        Assertions.assertTrue(calculatorPage.isFinalStepDisplayed(), "שלב סיום לא מוצג");
+        // 6. Verify final step is displayed
+        Assertions.assertTrue(calculatorPage.isFinalStepDisplayed(), "Final step is not displayed");
 
-        // 7. בדיקת סכומי ביטוח
-        Assertions.assertEquals("43", calculatorPage.getNationalInsuranceAmount(), "סכום דמי ביטוח לאומי שגוי");
-        Assertions.assertEquals("120.00", calculatorPage.getHealthInsuranceAmount(), "סכום דמי ביטוח בריאות שגוי");
-        Assertions.assertEquals("163", calculatorPage.getTotalAmount(), "סכום כולל שגוי");
-  }
+        // 7. Verify insurance amounts
+        Assertions.assertEquals("43", calculatorPage.getNationalInsuranceAmount(), "Incorrect national insurance amount");
+        Assertions.assertEquals("120.00", calculatorPage.getHealthInsuranceAmount(), "Incorrect health insurance amount");
+        Assertions.assertEquals("163", calculatorPage.getTotalAmount(), "Incorrect total amount");
+    }
 }

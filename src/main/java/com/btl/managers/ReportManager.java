@@ -9,6 +9,7 @@ public class ReportManager {
     public static ExtentReports getExtentReports() {
         if (extent == null) {
             ExtentSparkReporter sparkReporter = new ExtentSparkReporter("test-output/ExtentReport.html");
+            sparkReporter.config().setEncoding("utf-8"); 
             sparkReporter.config().setReportName("Automation Test Report");
             sparkReporter.config().setDocumentTitle("Test Results");
 

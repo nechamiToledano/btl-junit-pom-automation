@@ -15,7 +15,6 @@ public class InsuranceCalculatorPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    // אלמנטים עיקריים בדף החישוב
     private By pageTitleLocator = By
             .xpath("//h1[normalize-space(.)='חישוב דמי ביטוח עבור עצמאי, תלמיד, שוהה בחוץ לארץ ומי שלא עובד']");
     private By studentOption = By
@@ -67,7 +66,7 @@ public class InsuranceCalculatorPage {
 
     public void clickContinue() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
-        Thread.sleep(3000); // מחכה 3 שניות
+        Thread.sleep(3000); 
 
     }
 

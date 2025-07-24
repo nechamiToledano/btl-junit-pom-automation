@@ -17,7 +17,7 @@ public class ScreenshotUtil {
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
         String folderPath = "test-output/screenshots/";
-        String fileName = testName.replaceAll("[^a-zA-Z0-9]", "_") + "_" + timestamp + ".png"; // למניעת תווים אסורים
+        String fileName = testName.replaceAll("[^a-zA-Z0-9]", "_") + "_" + timestamp + ".png"; 
         String fullPath = folderPath + fileName;
 
         try {
@@ -27,7 +27,6 @@ public class ScreenshotUtil {
             e.printStackTrace();
         }
 
-        // נחזיר נתיב יחסי לשימוש בתוך הדוח HTML
         return "screenshots/" + fileName;
     }
 }
