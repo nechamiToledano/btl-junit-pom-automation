@@ -28,7 +28,6 @@ public class UnemploymentCalculatorPage extends BtlBasePage {
 
     public UnemploymentCalculatorPage(WebDriver driver) {
         super(driver);
-        // PageFactory.initElements כבר אמור להיות בקונסטרקטור של BtlBasePage
     }
 
     public void enterStopWorkDate(String date) {

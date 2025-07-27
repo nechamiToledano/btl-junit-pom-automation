@@ -9,13 +9,14 @@ public class SocialBenefitsNavigationTest extends BaseTest {
 
     private SocialBenefitsPage socialBenefitsPage;
 
-    @ParameterizedTest(name = "Navigate to ''{0}''' → expect title to contain ''{1}''")
+    @ParameterizedTest(name = "Navigate to ''{0}'' → expected title ''{1}''")
     @CsvSource({
-            "אבטלה, אבטלה",
-            "שאירים, שאירים",
+            "נכות כללית, נכות כללית",
+            "שיקום מקצועי, שיקום מקצועי",
             "קצבת ילדים, ילדים",
+            "מילואים, מילואים",
             "סיעוד, סיעוד",
-            "ילד נכה, ילד נכה"
+
     })
     public void testNavigateToBenefitsSubPages(String subMenuText, String expectedTitlePart) {
         socialBenefitsPage = new SocialBenefitsPage(driver);
