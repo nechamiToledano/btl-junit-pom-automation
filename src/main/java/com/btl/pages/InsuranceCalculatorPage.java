@@ -41,9 +41,13 @@ public class InsuranceCalculatorPage extends BtlBasePage {
     @FindBy(xpath = "//ul[@class='CalcResult']/li[3]/strong")
     private WebElement totalAmount;
 
+    @FindBy(id = "header")
+    private WebElement stepHeader;
+
     public InsuranceCalculatorPage(WebDriver driver) {
         super(driver);
     }
+
 
     public String getPageTitle() {
         return wait.until(ExpectedConditions.visibilityOf(pageTitle)).getText();
@@ -67,6 +71,11 @@ public class InsuranceCalculatorPage extends BtlBasePage {
         birthDateInput.sendKeys(formattedDate);
     }
 
+        public String getStepHeaderText() {
+        wait.until(ExpectedConditions.visibilityOf(stepHeader));
+        return stepHeader.getText();
+    }
+    
     public void selectDisabilityNo() {
         wait.until(ExpectedConditions.visibilityOf(disabilityNoRadio));
         scrollToElement(disabilityNoRadio);
@@ -95,6 +104,7 @@ public class InsuranceCalculatorPage extends BtlBasePage {
     public String getTotalAmount() {
         return wait.until(ExpectedConditions.visibilityOf(totalAmount)).getText().trim();
     }
+
 
     private void scrollToElement(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);

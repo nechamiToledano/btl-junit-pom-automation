@@ -1,6 +1,5 @@
 com\btl\utils\ScreenshotUtil.class
 com\btl\pages\UnemploymentCalculatorPage.class
-com\btl\pages\SocialInsurancePage.class
 com\btl\managers\DriverManager.class
 com\btl\pages\BasePage.class
 com\btl\pages\InsuranceCalculatorPage.class

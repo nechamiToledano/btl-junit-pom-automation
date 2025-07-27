@@ -24,7 +24,9 @@ public class InsuranceCalculationTest extends BaseTest {
 
         socialInsurancePage.goToCalculator();
 
-        Assertions.assertTrue(calculatorPage.getPageTitle().contains("חישוב דמי ביטוח עבור עצמאי, תלמיד, שוהה בחוץ לארץ ומי שלא עובד"),
+        Assertions.assertTrue(
+                calculatorPage.getPageTitle()
+                        .contains("חישוב דמי ביטוח עבור עצמאי, תלמיד, שוהה בחוץ לארץ ומי שלא עובד"),
                 "Calculator page not found");
 
         calculatorPage.selectStudentOption();
@@ -32,13 +34,18 @@ public class InsuranceCalculationTest extends BaseTest {
         LocalDate birthDate = LocalDate.of(2006, 11, 1);
         calculatorPage.enterBirthDate(birthDate);
         calculatorPage.clickContinue();
+        calculatorPage.clickContinue();
+        String stepHeaderText = calculatorPage.getStepHeaderText();
+        Assertions.assertTrue(stepHeaderText.contains("צעד שני"), "Did not reach step 2");
         calculatorPage.selectDisabilityNo();
         calculatorPage.clickContinue();
 
         Assertions.assertTrue(calculatorPage.isFinalStepDisplayed(), "Final step is not displayed");
 
-        Assertions.assertEquals("43", calculatorPage.getNationalInsuranceAmount(), "Incorrect national insurance amount");
-        Assertions.assertEquals("120.00", calculatorPage.getHealthInsuranceAmount(), "Incorrect health insurance amount");
+        Assertions.assertEquals("43", calculatorPage.getNationalInsuranceAmount(),
+                "Incorrect national insurance amount");
+        Assertions.assertEquals("120.00", calculatorPage.getHealthInsuranceAmount(),
+                "Incorrect health insurance amount");
         Assertions.assertEquals("163", calculatorPage.getTotalAmount(), "Incorrect total amount");
     }
 }
