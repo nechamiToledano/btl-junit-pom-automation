@@ -34,7 +34,6 @@ public class InsuranceCalculationTest extends BaseTest {
         LocalDate birthDate = LocalDate.of(2006, 11, 1);
         calculatorPage.enterBirthDate(birthDate);
         calculatorPage.clickContinue();
-        calculatorPage.clickContinue();
         String stepHeaderText = calculatorPage.getStepHeaderText();
         Assertions.assertTrue(stepHeaderText.contains("צעד שני"), "Did not reach step 2");
         calculatorPage.selectDisabilityNo();
